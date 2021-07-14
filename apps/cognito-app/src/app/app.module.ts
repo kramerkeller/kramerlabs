@@ -4,6 +4,7 @@ import {AppComponent} from "./app.component";
 
 import {AmplifyUIAngularModule} from "@aws-amplify/ui-angular";
 import Amplify, { Auth } from 'aws-amplify';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 Amplify.configure({
   Auth: {
@@ -68,7 +69,7 @@ const currentConfig = Auth.configure();
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [AmplifyUIAngularModule, BrowserModule],
+  imports: [AmplifyUIAngularModule, BrowserModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -178,3 +178,10 @@ You can just supress them one by one in angular.json
               "crypto-js/lib-typedarrays"
             ],
 ```
+
+Now lets add angular material and install amplify with angular material
+
+nx add @angular/material
+
+
+
