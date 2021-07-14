@@ -1,3 +1,4 @@
+REDO ALL OF THIS AND ADD WHERE YOU WOUDL GIT COMMIT AND MESSAGE etc
 
 ```bash
 [workshop]$ npx create-nx-workspace --preset=angular
