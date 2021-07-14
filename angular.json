@@ -11,6 +11,20 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
+            "allowedCommonJsDependencies": [
+              "uuid",
+              "lodash",
+              "@aws-crypto/sha256-js",
+              "buffer",
+              "ulid",
+              "@aws-crypto/sha256-browser",
+              "fast-xml-parser",
+              "@aws-crypto/crc32",
+              "isomorphic-unfetch",
+              "crypto-js/core",
+              "crypto-js/hmac-sha256",
+              "crypto-js/lib-typedarrays"
+            ],
             "outputPath": "dist/apps/cognito-app",
             "index": "apps/cognito-app/src/index.html",
             "main": "apps/cognito-app/src/main.ts",

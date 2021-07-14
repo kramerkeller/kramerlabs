@@ -123,16 +123,57 @@ If you don't want to include a polyfill, you can use an empty module like this:
 resolve.fallback: { "crypto": false }
 ```
 
-`npm install crypto-browserify`
+Reference for fix: https://github.com/ChainSafe/web3.js/issues/4070
 
-add the following to your package.json file
+`npm install crypto-browserify`
+`npm install stream-browserify`
+
+add the following to tsconfig.json
 
 ```json
-"devDependencies": {
-...
+"compilerOptions": {
+  ...
+  "paths": {
+    "crypto": ["./node_modules/crypto-browserify"],
+    "stream": ["./node_modules/readable-stream"]
+  }
 },
-"browser": {
-  "crypto": false
-}
 ```
 
+You may see a bunch of warnings too, like this:
+
+```bash
+Warning: /Users/kramerkeller/Developer/workshop/kramerlabs/node_modules/amazon-cognito-identity-js/es/CognitoUser.js depends on 'crypto-js/core'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: /Users/kramerkeller/Developer/workshop/kramerlabs/node_modules/amazon-cognito-identity-js/es/CognitoUser.js depends on 'crypto-js/hmac-sha256'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: /Users/kramerkeller/Developer/workshop/kramerlabs/node_modules/amazon-cognito-identity-js/es/CognitoUser.js depends on 'crypto-js/lib-typedarrays'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+```
+
+You can just supress them one by one in angular.json
+
+```json
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "allowedCommonJsDependencies": [
+              "uuid",
+              "lodash",
+              "@aws-crypto/sha256-js",
+              "buffer",
+              "ulid",
+              "@aws-crypto/sha256-browser",
+              "fast-xml-parser",
+              "@aws-crypto/crc32",
+              "isomorphic-unfetch",
+              "crypto-js/core",
+              "crypto-js/hmac-sha256",
+              "crypto-js/lib-typedarrays"
+            ],
+```
