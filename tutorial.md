@@ -183,5 +183,9 @@ Now lets add angular material and install amplify with angular material
 
 nx add @angular/material
 
+Follow these instructions
+https://www.npmjs.com/package/ngx-cognito
 
+nx add @angular/localize
 
+Add "    "angularx-qrcode": "^10.0.11", to dependencies then `npm install`

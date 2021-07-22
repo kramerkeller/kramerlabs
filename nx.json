@@ -33,6 +33,16 @@
     "cognito-app-e2e": {
       "tags": [],
       "implicitDependencies": ["cognito-app"]
+    },
+    "google-auth-app": {
+      "tags": []
+    },
+    "google-auth-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["google-auth-app"]
+    },
+    "shared-http": {
+      "tags": []
     }
   }
 }
