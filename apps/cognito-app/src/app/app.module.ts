@@ -5,6 +5,8 @@ import {AppComponent} from "./app.component";
 import {AmplifyUIAngularModule} from "@aws-amplify/ui-angular";
 import Amplify, { Auth } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
 
 Amplify.configure({
   Auth: {
@@ -54,13 +56,13 @@ Amplify.configure({
     // clientMetadata: { myCustomKey: 'myCustomValue' },
 
     // OPTIONAL - Hosted UI configuration
-    // oauth: {
-    //   domain: 'your_cognito_domain',
-    //   scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-    //   redirectSignIn: 'http://localhost:3000/',
-    //   redirectSignOut: 'http://localhost:3000/',
-    //   responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
-    // }
+    oauth: {
+      domain: 'kramerlabs-poll.auth.us-east-1.amazoncognito.com',
+      scope: ['email', 'profile', 'openid'],
+      redirectSignIn: 'http://localhost:4200',
+      redirectSignOut: 'http://localhost:4200',
+      responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
+    }
   }
 });
 
@@ -69,7 +71,7 @@ const currentConfig = Auth.configure();
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [AmplifyUIAngularModule, BrowserModule, BrowserAnimationsModule],
+  imports: [AmplifyUIAngularModule, BrowserModule, BrowserAnimationsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,7 +1,8 @@
-<img src="{{ user.photoUrl }}">
-<div>
+<div *ngIf='user'>
+  <img src="{{ user.photoUrl }}">
   <h4>{{ user.name }}</h4>
   <p>{{ user.email }}</p>
+  <button (click)='write()'>write</button>
 </div>
 
 <button (click)='signInWithGoogle()'>Sign In With Google</button>

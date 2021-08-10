@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'kramerlabs-root',
@@ -11,7 +12,7 @@ export class AppComponent {
   user: SocialUser;
   loggedIn: boolean;
 
-  constructor(private authService: SocialAuthService) { }
+  constructor(private authService: SocialAuthService, private _http: HttpClient) { }
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -30,6 +31,12 @@ export class AppComponent {
       this.user = user;
       this.loggedIn = (user != null);
     });
+  }
+
+  write() {
+    const url = ' http://localhost:4200/api';
+
+    this._http.post(url, {"id":"1","name":"ram"}).subscribe((response) => console.log(response));
   }
 
 }

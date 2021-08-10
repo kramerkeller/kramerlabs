@@ -189,3 +189,16 @@ https://www.npmjs.com/package/ngx-cognito
 nx add @angular/localize
 
 Add "    "angularx-qrcode": "^10.0.11", to dependencies then `npm install`
+
+
+
+
+
+Second part of tutorial
+inst all this then... run online, get endpoint and then do the rest
+https://medium.com/swlh/serverless-application-with-api-gateway-aws-lambda-and-dynamodb-using-sam-62ae5b0465c2
+
+this was my endpoint (Don't publish)
+https://oz4p00bk0k.execute-api.us-east-1.amazonaws.com/Prod
+
+curl -X POST -d '{"id":"1","name":"ram"}' https://12345abcde.execute-api.ap-south-1.amazonaws.com/Prod/writedb
