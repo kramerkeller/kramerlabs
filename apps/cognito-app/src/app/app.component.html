@@ -1,30 +1,9 @@
-<div>
-  test
-  <br>
+<ng-container *ngIf='!currentUser'>
+  <button (click)='googleLoginClick()'>sign in wih google</button>
+</ng-container>
+
+<ng-container *ngIf='currentUser'>
   <button (click)='write()'>write</button>
-  <button (click)='read()'>read</button>
-  <br>
-  <amplify-authenticator *ngIf="authState !== 'signedin'">
-    <amplify-sign-in slot="sign-in">
-      <div slot="federated-buttons"></div>
-    </amplify-sign-in>
-  </amplify-authenticator>
-</div>
-
-<button (click)='onLoginClick()'>sign in</button>
-
-
-
-<div *ngIf="authState === 'signedin' && user" class="App">
-  <amplify-sign-out></amplify-sign-out>
-  <div>Hello, {{user.username}}</div>
-  Now here is where you should tie in your api gateway
-  <br>
-  Which would be easier to do if you had made it a seperate lib in this nx repo ha ha
-  <br>
-  <button (click)='write()'>write</button>
-  <button (click)='read()'>read</button>
-  <!-- This is where you application template code goes -->
-</div>
-
-
+  <button (click)='read()'>Read User</button>
+  <button (click)='signOutClick()'>sign out</button>
+</ng-container>

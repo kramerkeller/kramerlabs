@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://oz4p00bk0k.execute-api.us-east-1.amazonaws.com/Prod/writedb",
+    "target": "https://oz4p00bk0k.execute-api.us-east-1.amazonaws.com/Prod",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {
