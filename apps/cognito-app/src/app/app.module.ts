@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
@@ -6,6 +7,8 @@ import {AmplifyUIAngularModule} from "@aws-amplify/ui-angular";
 import Amplify, { Auth } from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { UsersComponent } from './users/users.component';
 
 
 Amplify.configure({
@@ -66,12 +69,18 @@ Amplify.configure({
   }
 });
 
-// You can get the current config object
-const currentConfig = Auth.configure();
-
 @NgModule({
-  declarations: [AppComponent],
-  imports: [AmplifyUIAngularModule, BrowserModule, BrowserAnimationsModule, HttpClientModule],
+  declarations: [AppComponent, LoginComponent, UsersComponent],
+  imports: [
+    AmplifyUIAngularModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'login', component: LoginComponent },
+      { path: '', component: UsersComponent },
+      { path: '**', redirectTo: '/' }    ])
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

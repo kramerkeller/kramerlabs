@@ -3,7 +3,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { CognitoUserInterface } from '@aws-amplify/ui-components';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from 'aws-amplify';
-import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'kramerlabs-root',
@@ -11,45 +11,18 @@ import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'amplify-angular-auth';
-  user: CognitoUserInterface;
+  cognitoUser: CognitoUserInterface | null = null;
 
-  currentUser: CognitoUserInterface | null = null;
-
-  constructor(private ref: ChangeDetectorRef, private _http: HttpClient) {
+  // Can I use auth gaurd ? then via authguard utilize auth service?
+  constructor(private ref: ChangeDetectorRef, private _http: HttpClient, _router: Router) {
     Auth.currentAuthenticatedUser().then(
-      (user: any) => this.currentUser = user,
-      _err => console.log('redirect to login page')
+      (user: any) => this.cognitoUser = user,
+      _err => _router.navigate(['/login'])
     );
   }
 
-  googleLoginClick() {
-    Auth.federatedSignIn({
-      provider: CognitoHostedUIIdentityProvider.Google
-    })
-  }
-
+  // Call auth service
   signOutClick() {
     Auth.signOut();
-  }
-
-  read() {
-    // const url = 'https://oz4p00bk0k.execute-api.us-east-1.amazonaws.com/Prod/writedb';
-    const url = 'http://localhost:4200/api/users/7be4e856-fb5b-4cba-aaf0-fd1bbd80da45';
-    const token = this.currentUser?.signInUserSession?.idToken?.jwtToken || '';
-    console.log('token', token);
-    console.log(this.currentUser);
-    const headers = {"token": token}; // put in token for now
-    this._http.get(url, {headers}).subscribe((response) => console.log(response));
-  }
-
-  write() {
-    // const url = 'https://oz4p00bk0k.execute-api.us-east-1.amazonaws.com/Prod/writedb';
-    const url = 'http://localhost:4200/api/writedb';
-    const token = this.currentUser?.signInUserSession?.idToken?.jwtToken || '';
-    console.log('token', token);
-    console.log(this.currentUser);
-    const headers = {"token": token}; // put in token for now
-    this._http.post(url, {"id":"1","name":"ram"}, {headers}).subscribe((response) => console.log(response));
   }
 }
