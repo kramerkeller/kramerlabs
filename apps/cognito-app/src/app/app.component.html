@@ -1,6 +1,4 @@
 <!-- TODO Auth guard instead? -->
-<ng-container *ngIf='cognitoUser'>
-  <button (click)='signOutClick()'>sign out</button>
-</ng-container>
+<button (click)='signOutClick()'>sign out</button>
 <br><br>
 <router-outlet></router-outlet>

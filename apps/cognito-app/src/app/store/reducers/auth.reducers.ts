@@ -1,3 +1,4 @@
+import { createReducer } from '@ngrx/store';
 import { User } from '../../models/users';
 
 export interface State {
@@ -14,3 +15,7 @@ export const initialState: State = {
   user: null,
   errorMessage: null
 };
+
+export const reducer = createReducer(
+  initialState
+);

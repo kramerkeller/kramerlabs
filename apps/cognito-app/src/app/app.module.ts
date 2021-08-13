@@ -1,14 +1,22 @@
+import { UserFacade } from './store/user.facade';
+import { AuthService } from './services/auth.service';
 import { RouterModule } from '@angular/router';
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
-
+// DO I just need amplify auth?
 import {AmplifyUIAngularModule} from "@aws-amplify/ui-angular";
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/app.states';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 Amplify.configure({
@@ -76,12 +84,19 @@ Amplify.configure({
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers, {}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
+    EffectsModule.forRoot([AuthEffects]),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: '', component: UsersComponent },
       { path: '**', redirectTo: '/' }    ])
   ],
-  providers: [],
+  providers: [AuthService, UserFacade],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
