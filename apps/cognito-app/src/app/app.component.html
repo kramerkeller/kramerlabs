@@ -1,4 +1,4 @@
 <!-- TODO Auth guard instead? -->
-<button (click)='signOutClick()'>sign out</button>
+<button *ngIf='loggedIn$ | async' (click)='signOutClick()'>sign out</button>
 <br><br>
 <router-outlet></router-outlet>

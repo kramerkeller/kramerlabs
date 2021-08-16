@@ -23,6 +23,4 @@ export class UsersComponent {
       this._http.post(url, {"id":"1","name":"ram"}, {headers}).subscribe((response) => console.log(response));
     });
   }
-
-
 }

@@ -1,9 +1,17 @@
-import * as auth from './reducers/auth.reducers';
+// maybe jsut put this in index.ts?
 
-export interface AppState {
-  authState: auth.State;
+import { ActionReducerMap } from '@ngrx/store';
+import { AuthState, reducer } from './reducers/auth.reducers';
+
+export interface State {
+  auth: AuthState
 }
 
-export const reducers = {
-  auth: auth.reducer
+export const reducers: ActionReducerMap<State> = {
+  auth: reducer
 };
+
+// to do for later
+// export const metaReducers: MetaReducer<State>[] = !environment.production
+//   ? []
+//   : [];
