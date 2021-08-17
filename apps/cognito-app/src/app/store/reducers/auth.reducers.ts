@@ -1,7 +1,7 @@
 import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { User } from '../../models/users';
-import { loadUserFailure, loadUserSuccess, logoutUser } from '../actions/user.actions';
+import { loadUser, loadUserFailure, loadUserSuccess, logoutUser } from '../actions/user.actions';
 
 export interface AuthState {
   // is a user authenticated?
@@ -26,6 +26,7 @@ export const initialState: AuthState = {
 
 export const reducer = createReducer(
   initialState,
+  on(loadUser, (state) => ({...state, loading: true, loaded: false, errorMessage: null})),
   on(loadUserSuccess, (state, {user}) => ({
     ...state,
     isLoggedIn: true,
@@ -34,10 +35,5 @@ export const reducer = createReducer(
     loaded: true,
     errorMessage: null
   })),
-
-  // DOES THIS WORK AS EXPECTED? DO I need state to reset initial?
-  // on(logoutUser, (state) => ({
-  //   ...state,
-  //   initialState
-  // }))
+  on(logoutUser, () => initialState)
 );

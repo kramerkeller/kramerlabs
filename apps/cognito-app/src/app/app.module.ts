@@ -8,7 +8,7 @@ import {AppComponent} from "./app.component";
 import {AmplifyUIAngularModule} from "@aws-amplify/ui-angular";
 import Amplify from 'aws-amplify';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { EffectsModule } from '@ngrx/effects';
@@ -17,6 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.states';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 Amplify.configure({
@@ -96,7 +97,15 @@ Amplify.configure({
       { path: '', component: UsersComponent },
       { path: '**', redirectTo: '/' }    ])
   ],
-  providers: [AuthService, UserFacade],
+  providers: [
+    AuthService,
+    UserFacade,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

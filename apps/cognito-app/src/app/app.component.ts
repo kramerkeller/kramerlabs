@@ -8,7 +8,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  loggedIn$ = this._userFacade.$loggedIn;
+  loggedIn$ = this._userFacade.loggedIn$;
 
   constructor(private _auth: AuthService, private _userFacade: UserFacade) {}
 

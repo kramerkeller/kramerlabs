@@ -7,7 +7,7 @@ import { selectLoggedIn} from './selectors/user.selectors';
 export class UserFacade {
   constructor(private _store: Store) {}
 
-  $loggedIn = this._store.select(selectLoggedIn);
+  loggedIn$ = this._store.select(selectLoggedIn);
 
   googleLogin() {
     this._dispatch(googleLogin());
