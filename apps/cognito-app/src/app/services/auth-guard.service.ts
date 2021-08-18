@@ -1,9 +1,7 @@
-import { map, tap, switchMap, filter, skip, takeUntil } from 'rxjs/operators';
+import { tap, filter } from 'rxjs/operators';
 import { UserFacade } from './../store/user.facade';
-import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { Observable, of, race } from 'rxjs';
+import { CanActivate } from '@angular/router';
 
 // Shouls this be providedIn: root?
 @Injectable({
