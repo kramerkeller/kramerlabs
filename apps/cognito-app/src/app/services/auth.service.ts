@@ -18,16 +18,12 @@ export class AuthService {
   }
 
   loadUser() {
-    // Check Cognito Auth for user
     return from(Auth.currentSession()).pipe(
       switchMap((session) => {
-        // Once the ID is stored in the backend (is it?) Then this may not matter, maybe user should have toke and
         const token = session.getIdToken().getJwtToken();
-        const id = session.getIdToken().payload.sub;
-        // Probably a safer way to do this than appending the id as string
-        const url = 'http://localhost:4200/api/users/' + id;
+        const url = 'http://localhost:4200/api/users/';
         return this._http.get(url, {headers: {token}}).pipe(
-          map((userInfo) => ({ token, id, ...userInfo }))
+          map((userInfo) => ({ token, ...userInfo }))
         )
       })
     )
