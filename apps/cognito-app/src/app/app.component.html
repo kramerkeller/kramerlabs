@@ -1,4 +1,7 @@
-<!-- TODO Auth guard instead? -->
+<!-- TODO: Maybe user route resolver? https://dzone.com/articles/understanding-angular-route-resolvers-by-example -->
 <button *ngIf='loggedIn$ | async' (click)='signOutClick()'>sign out</button>
+
+<a routerLink="/users">users page</a>
+
 <br><br>
 <router-outlet></router-outlet>

@@ -17,7 +17,7 @@ export class AuthService {
     );
   }
 
-  loadUser() {
+  getUser() {
     return from(Auth.currentSession()).pipe(
       switchMap((session) => {
         const token = session.getIdToken().getJwtToken();

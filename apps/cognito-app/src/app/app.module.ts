@@ -18,6 +18,8 @@ import { reducers } from './store/app.states';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { TokenInterceptor } from './services/token.interceptor';
+import { LandingComponent } from './landing/landing.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 
 Amplify.configure({
@@ -79,7 +81,7 @@ Amplify.configure({
 });
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UsersComponent],
+  declarations: [AppComponent, LoginComponent, UsersComponent, LandingComponent],
   imports: [
     AmplifyUIAngularModule,
     BrowserModule,
@@ -94,8 +96,10 @@ Amplify.configure({
     EffectsModule.forRoot([AuthEffects]),
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
-      { path: '', component: UsersComponent },
-      { path: '**', redirectTo: '/' }    ])
+      { path: '', component: LandingComponent, canActivate: [AuthGuard] },
+      { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+      { path: '**', redirectTo: '/' }
+    ])
   ],
   providers: [
     AuthService,

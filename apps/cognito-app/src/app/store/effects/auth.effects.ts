@@ -47,7 +47,7 @@ export class AuthEffects {
     this._actions$.pipe(
       ofType(loadUser),
       switchMap(() =>
-        this._auth.loadUser().pipe(
+        this._auth.getUser().pipe(
           // Why does work here, but not above in googleLogin?
           map((user) => {
             console.log(user);

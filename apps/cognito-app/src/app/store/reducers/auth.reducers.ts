@@ -5,7 +5,7 @@ import { loadUser, loadUserFailure, loadUserSuccess, logoutUser } from '../actio
 
 export interface AuthState {
   // is a user authenticated?
-  isLoggedIn: boolean;
+  loggedIn: boolean;
   // if authenticated, there should be a user object
   user: User | null;
   // for loading bar
@@ -13,15 +13,15 @@ export interface AuthState {
   // for loading bar
   loaded: boolean;
   // error message
-  errorMessage: string | null;
+  error: string | null;
 }
 
 export const initialState: AuthState = {
-  isLoggedIn: false,
+  loggedIn: false,
   user: null,
   loading: false,
   loaded: false,
-  errorMessage: null,
+  error: null,
 };
 
 export const reducer = createReducer(
@@ -29,7 +29,7 @@ export const reducer = createReducer(
   on(loadUser, (state) => ({...state, loading: true, loaded: false, errorMessage: null})),
   on(loadUserSuccess, (state, {user}) => ({
     ...state,
-    isLoggedIn: true,
+    loggedIn: true,
     user,
     loading: false,
     loaded: true,
