@@ -20,6 +20,9 @@ import { environment } from '../environments/environment';
 import { TokenInterceptor } from './services/token.interceptor';
 import { LandingComponent } from './landing/landing.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 Amplify.configure({
@@ -99,7 +102,9 @@ Amplify.configure({
       { path: '', component: LandingComponent, canActivate: [AuthGuard] },
       { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: '/' }
-    ])
+    ]),
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,

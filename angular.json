@@ -9,7 +9,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "allowedCommonJsDependencies": [
               "uuid",
@@ -103,7 +105,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/cognito-app"],
+          "outputs": [
+            "coverage/apps/cognito-app"
+          ],
           "options": {
             "jestConfig": "apps/cognito-app/jest.config.js",
             "passWithNoTests": true
@@ -132,7 +136,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/cognito-app-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/cognito-app-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -145,7 +151,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/google-auth-app",
             "index": "apps/google-auth-app/src/index.html",
@@ -157,7 +165,9 @@
               "apps/google-auth-app/src/favicon.ico",
               "apps/google-auth-app/src/assets"
             ],
-            "styles": ["apps/google-auth-app/src/styles.scss"],
+            "styles": [
+              "apps/google-auth-app/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -222,7 +232,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/google-auth-app"],
+          "outputs": [
+            "coverage/apps/google-auth-app"
+          ],
           "options": {
             "jestConfig": "apps/google-auth-app/jest.config.js",
             "passWithNoTests": true
@@ -251,7 +263,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/google-auth-app-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/google-auth-app-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -264,7 +278,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/http"],
+          "outputs": [
+            "coverage/libs/shared/http"
+          ],
           "options": {
             "jestConfig": "libs/shared/http/jest.config.js",
             "passWithNoTests": true

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private _auth: AuthService, private _userFacade: UserFacade) {}
 
   ngOnInit(): void {
-    // this._userFacade.loadUser();
+    this._userFacade.loadUser();
     console.log('test');
   }
 

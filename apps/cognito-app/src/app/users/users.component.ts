@@ -1,12 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Auth } from 'aws-amplify';
-import { from } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'kramerlabs-users',
-  templateUrl: './users.component.html',
+  template: `
+<mat-form-field appearance="fill">
+  <mat-label>Input</mat-label>
+  <input matInput>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Select</mat-label>
+  <mat-select>
+    <mat-option value="one">First option</mat-option>
+    <mat-option value="two">Second option</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Textarea</mat-label>
+  <textarea matInput></textarea>
+</mat-form-field>
+  `,
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
